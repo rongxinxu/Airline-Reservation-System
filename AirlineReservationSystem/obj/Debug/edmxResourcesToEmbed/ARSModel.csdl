@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirlineReservationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="AirlineReservationDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Customers" EntityType="AirlineReservationDBModel.Customer" />
+    <EntitySet Name="Flights" EntityType="AirlineReservationDBModel.Flight" />
+    <AssociationSet Name="FK_Customer_ToTable" Association="AirlineReservationDBModel.FK_Customer_ToTable">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SeatNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="typeOfTicket" Type="Int32" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlightConfirmNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TicketPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlightID" Type="Int32" />
+    <NavigationProperty Name="Flight" Relationship="AirlineReservationDBModel.FK_Customer_ToTable" FromRole="Customer" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Airline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Flight_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Economy_Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FirstClass_Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Seat_Capacity" Type="Int32" />
+    <Property Name="Seat_Left" Type="Int32" />
+    <Property Name="Departure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Arrival" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Departure_Time" Type="DateTime" Precision="3" />
+    <Property Name="Arrival_Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customers" Relationship="AirlineReservationDBModel.FK_Customer_ToTable" FromRole="Flight" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Customer_ToTable">
+    <End Type="AirlineReservationDBModel.Flight" Role="Flight" Multiplicity="0..1" />
+    <End Type="AirlineReservationDBModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="FlightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AirlineReservationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="SeatNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="typeOfTicket" Type="int" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlightConfirmNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="TicketPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlightID" Type="int" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Airline" Type="nvarchar" MaxLength="50" />
+          <Property Name="Flight Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Economy Price" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="FirstClass Price" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Seat Capacity" Type="int" />
+          <Property Name="Seat Left" Type="int" />
+          <Property Name="Departure" Type="nvarchar" MaxLength="50" />
+          <Property Name="Arrival" Type="nvarchar" MaxLength="50" />
+          <Property Name="Departure Time" Type="datetime" />
+          <Property Name="Arrival Time" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Customer_ToTable">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FlightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirlineReservationDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customer_ToTable" Association="Self.FK_Customer_ToTable">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirlineReservationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="AirlineReservationDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Customers" EntityType="AirlineReservationDBModel.Customer" />
+          <EntitySet Name="Flights" EntityType="AirlineReservationDBModel.Flight" />
+          <AssociationSet Name="FK_Customer_ToTable" Association="AirlineReservationDBModel.FK_Customer_ToTable">
+            <End Role="Flight" EntitySet="Flights" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SeatNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="typeOfTicket" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlightConfirmNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TicketPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlightID" Type="Int32" />
+          <NavigationProperty Name="Flight" Relationship="AirlineReservationDBModel.FK_Customer_ToTable" FromRole="Customer" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Airline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flight_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Economy_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FirstClass_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Seat_Capacity" Type="Int32" />
+          <Property Name="Seat_Left" Type="Int32" />
+          <Property Name="Departure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Arrival" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Departure_Time" Type="DateTime" Precision="3" />
+          <Property Name="Arrival_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customers" Relationship="AirlineReservationDBModel.FK_Customer_ToTable" FromRole="Flight" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Customer_ToTable">
+          <End Type="AirlineReservationDBModel.Flight" Role="Flight" Multiplicity="0..1" />
+          <End Type="AirlineReservationDBModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FlightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AirlineReservationDBModelStoreContainer" CdmEntityContainer="AirlineReservationDBEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="AirlineReservationDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="AirlineReservationDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+                <ScalarProperty Name="FlightConfirmNumber" ColumnName="FlightConfirmNumber" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="typeOfTicket" ColumnName="typeOfTicket" />
+                <ScalarProperty Name="SeatNum" ColumnName="SeatNum" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="AirlineReservationDBModel.Flight">
+              <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="Arrival_Time" ColumnName="Arrival Time" />
+                <ScalarProperty Name="Departure_Time" ColumnName="Departure Time" />
+                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+                <ScalarProperty Name="Departure" ColumnName="Departure" />
+                <ScalarProperty Name="Seat_Left" ColumnName="Seat Left" />
+                <ScalarProperty Name="Seat_Capacity" ColumnName="Seat Capacity" />
+                <ScalarProperty Name="FirstClass_Price" ColumnName="FirstClass Price" />
+                <ScalarProperty Name="Economy_Price" ColumnName="Economy Price" />
+                <ScalarProperty Name="Flight_Number" ColumnName="Flight Number" />
+                <ScalarProperty Name="Airline" ColumnName="Airline" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

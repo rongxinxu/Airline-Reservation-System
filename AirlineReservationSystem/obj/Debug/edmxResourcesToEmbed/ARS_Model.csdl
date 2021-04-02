@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARSdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="ARSdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Customers" EntityType="ARSdbModel.Customer" />
+    <EntitySet Name="Flights" EntityType="ARSdbModel.Flight" />
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Seat_Number" Type="Int32" />
+    <Property Name="Flight_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Type_of_Ticket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="Airline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Flight_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Economy_Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FirstClass_Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Seat_Capacity" Type="Int32" />
+    <Property Name="Seat_Left" Type="Int32" />
+    <Property Name="Departure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Arrival" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Departure_Time" Type="DateTime" Precision="3" />
+    <Property Name="Arrival_Time" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

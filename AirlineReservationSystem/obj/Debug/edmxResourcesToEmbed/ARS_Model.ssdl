@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARSdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Seat Number" Type="int" />
+    <Property Name="Flight Number" Type="nvarchar" MaxLength="10" />
+    <Property Name="Type of Ticket" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+    <Property Name="Airline" Type="nvarchar" MaxLength="50" />
+    <Property Name="Flight Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Economy Price" Type="money" />
+    <Property Name="FirstClass Price" Type="money" />
+    <Property Name="Seat Capacity" Type="int" />
+    <Property Name="Seat Left" Type="int" />
+    <Property Name="Departure" Type="nvarchar" MaxLength="50" />
+    <Property Name="Arrival" Type="nvarchar" MaxLength="50" />
+    <Property Name="Departure Time" Type="datetime" />
+    <Property Name="Arrival Time" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="ARSdbModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
