@@ -25,6 +25,16 @@ Setup a flight to be reserved with:
 - [Customer](AirlineReservationSystem/Customer.cs)
 - [Flight](AirlineReservationSystem/Flight.cs)
 
+## Main Codes
+- [Program.cs](AirlineReservationSystem/Program.cs)
+- [Form1.cs](AirlineReservationSystem/Form1.cs)
+- [AdminLogin.cs](AirlineReservationSystem/AdminLogin.cs)
+- [Booking.cs](AirlineReservationSystem/Booking.cs)
+- [Seats.cs](AirlineReservationSystem/Seats.cs)
+- [Ticket.cs](AirlineReservationSystem/Ticket.cs)
+- [checkMyFlight.cs](AirlineReservationSystem/checkMyFlight.cs)
+- [setupFlights.cs](AirlineReservationSystem/setupFlights.cs)
+
 ## Test Cases
 * [Test Case 1 (line 34-91)](AirlineReservationSystem/Program.cs) Display all available flights that has at least one seat left AND departing in 1 hour or later. 
 * [Test Case 2 (line 101-152)](AirlineReservationSystem/Program.cs) Economy or First-Class Tickets/Seats are FULL
