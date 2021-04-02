@@ -22,7 +22,6 @@ Setup a flight to be reserved with:
 
 
 ## Test Cases:
-**[Test Case 1 (line 34 ~ 91)](AirlineReservationSystem/Program.cs) **
-1. Display all available flights that has at least one seat left AND departing in 1 hour or later. 
-[Test Case 1 (line 34 ~ 91)](AirlineReservationSystem/Program.cs)
+* [Test Case 1 (line 34-91)](AirlineReservationSystem/Program.cs)
+ Display all available flights that has at least one seat left AND departing in 1 hour or later. 
 2.  
