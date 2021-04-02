@@ -5,6 +5,7 @@ Airline Reservation System
 **Project Definition:**
 The task is to create a mini airline reservation system. The system must be able to handle two types of users: Customers and Administrators.
 
+--
 **Administrator:**
 Setup a flight to be reserved with:
 - Seating capacity of the plane
@@ -13,5 +14,8 @@ Setup a flight to be reserved with:
 - Arrival airport for the flight
 - Departure time
 - Arrival time
+--
+
+**Features to be supported:**
 
 
