@@ -20,6 +20,11 @@ Setup a flight to be reserved with:
 - Allow user to pick a flight from list of all flights available and enter basic info (their name and age).
 - Seating chart must be displayed to the client when it is time to pick their seat.
 
+## Classes
+- [Admin](AirlineReservationSystem/Admin.cs)
+- [Customer](AirlineReservationSystem/Customer.cs)
+- [Flight](AirlineReservationSystem/Flight.cs)
+
 ## Test Cases
 * [Test Case 1 (line 34-91)](AirlineReservationSystem/Program.cs) Display all available flights that has at least one seat left AND departing in 1 hour or later. 
 * [Test Case 2 (line 101-152)](AirlineReservationSystem/Program.cs) Economy or First-Class Tickets/Seats are FULL
